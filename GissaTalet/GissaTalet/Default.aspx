@@ -1,0 +1,50 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GissaTalet.Default" ViewStateMode="Disabled" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Gissa Talet</title>
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="page">
+        <div id="container">
+            <h1>Gissa det hemliga talet </h1>
+        <form id="form1" runat="server">
+        <div>
+             <%-- Felmeddelanden --%>
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="validation-summary-errors"
+                   HeaderText="Fel inträffade. Korrigera och försök igen." />    
+           
+             <!-- Ange tal-->
+            <asp:Label ID="Label1" runat="server" Text="Ange ett tal mellan 1 och 100:" onFocus="this.select()"></asp:Label>           
+            <asp:TextBox ID="TextNr" runat="server"></asp:TextBox>
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                    ErrorMessage="Ett tal måste anges" CssClass="error" 
+                    ControlToValidate="TextNr" SetFocusOnError="True" Text="*" Display="Dynamic"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="CompareValidator1" runat="server" 
+                    ErrorMessage="Ett tal måste anges" CssClass="error" Text="*" ControlToValidate="TextNr" 
+                    Operator="DataTypeCheck" Type="Integer" SetFocusOnError="True" Display="Dynamic">
+                </asp:CompareValidator>
+             <asp:RangeValidator ID="RangeValidator1" runat="server"  CssClass="error" 
+                    ErrorMessage="Talet måste ligga mellan 1-100." Text="*" Type="Integer"
+                    MaximumValue="100" MinimumValue="1" ControlToValidate="TextNr" SetFocusOnError="True"></asp:RangeValidator>
+             <!-- Knapp-->
+            <asp:Button ID="Gissa" runat="server" Text="Skicka gissning" MaxLength="3" OnClick="Gissa_Click"/>
+           
+            <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+             <!-- Gissade tal-->
+            <asp:Label ID="Tal" runat="server" Text=""></asp:Label>
+            
+            <asp:Label ID="SlutText" runat="server" Text="Du har inga gissningar kvar. Det hemliga talet var "></asp:Label>
+           
+            <asp:Button ID="GuessAgain" runat="server" Text="Slumpa nytt hemligt tal." />
+
+            </asp:PlaceHolder>
+        </div>
+        </form>
+        </div>
+    </div>
+</body>
+</html>

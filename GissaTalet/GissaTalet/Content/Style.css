@@ -1,0 +1,49 @@
+﻿body {
+}
+
+#Konvertera {
+    margin-top:25px;
+}
+.headerRow {
+    font-weight:bold;
+    font-size:2em;
+}
+tr:nth-child(even) {background: #e5e5e5}
+tr:nth-child(odd) {background: #FFF}
+#page {
+    width: 70%;
+    margin:0 auto;
+
+}
+.radio { 
+    margin-top:15px;
+    display:block;
+}
+#container {
+    margin:0 auto;
+}
+.error {
+    color:red;
+}
+
+.editor-label {
+    font-weight:bold;
+    margin-top:10px;
+}
+.validation-summary-errors {
+    color:red;
+}
+
+table { border-collapse:collapse }
+#Table1 {
+    position:absolute;
+    top:90px;
+    left:600px;
+    width:400px;
+    height:auto;
+    border:1px solid #808080;
+    background:#f5f5f5;
+    border:1px solid #000;
+    text-align:center;
+    min-height:400px;
+}
