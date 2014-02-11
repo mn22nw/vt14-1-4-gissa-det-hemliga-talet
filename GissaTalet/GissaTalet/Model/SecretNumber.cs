@@ -83,12 +83,12 @@ namespace GissaTalet.Model
 
                 if (number < _number)
                 {
-                    return _lastOutcome = Outcome.High;           
+                    return _lastOutcome = Outcome.Low;           
                 }
 
                 if (number > _number)
                 {
-                    return _lastOutcome = Outcome.Low;
+                    return _lastOutcome = Outcome.High;
                 }
 
             }

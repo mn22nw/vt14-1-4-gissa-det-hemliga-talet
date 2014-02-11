@@ -41,7 +41,7 @@ namespace GissaTalet
                 {
 
                     PlaceHolder1.Visible = true;
-                    
+                    Gissningar.Visible = true;
                    var gissatNr = SecretNumber.MakeGuess(Int32.Parse(TextNr.Text));
                    TextNr.Attributes.Add("onfocus", "this.select();");
                    
@@ -49,7 +49,7 @@ namespace GissaTalet
                    if (gissatNr == SecretNumber.Outcome.Low) 
                    
                    {
-                       Gissningar.Text += String.Format("{0}", gissatNr);
+                       Gissningar.Text += String.Format("låågt {0}", SecretNumber.LastOutcome);
                       
                    /*    Image myImg = new Image();
                        myImg.ImageUrl = "~/Content/qm.jpg";
@@ -59,8 +59,8 @@ namespace GissaTalet
 
                    if (gissatNr == SecretNumber.Outcome.High)
                    {
-                       Gissningar.Text += String.Format("{0}", SecretNumber.LastOutcome);
-                       High.Visible = true;
+                       Gissningar.Text += String.Format("Högt ju vah + {0}", TextNr.Text);
+                      // High.Visible = true;
                    }
 
                    if (gissatNr == SecretNumber.Outcome.Correct)
@@ -68,6 +68,15 @@ namespace GissaTalet
                        Gissningar.Text += String.Format("Grattis!! Du klarade det på {0} försök", SecretNumber.Count);
 
                    }
+
+                   if (gissatNr == SecretNumber.Outcome.NoMoreGuesses)
+                   {
+                       SlutText.Visible = true;
+                       SlutText.Text += String.Format("Du har inga mer gissnigar kvar. Det hemliga talet var {0}", SecretNumber.Number);
+
+                   }
+
+
  
                     //textbox.SelectionStart = 0;
                     //textbox.SelectionLength = textbox.Text.Length;
