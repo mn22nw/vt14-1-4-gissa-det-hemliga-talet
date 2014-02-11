@@ -42,14 +42,11 @@ namespace GissaTalet
             {
                 try
                 {
-
                     SecretNumber.MakeGuess(Int32.Parse(TextNr.Text));
-
                     TextNr.Attributes.Add("onfocus", "this.select();");
-
+                   
                     //textbox.SelectionStart = 0;
                     //textbox.SelectionLength = textbox.Text.Length;
-
 
                     /*  if (PrevCount.HasValue)
                           {

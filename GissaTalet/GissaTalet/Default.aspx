@@ -19,7 +19,7 @@
            
              <!-- Ange tal-->
             <asp:Label ID="Label1" runat="server" Text="Ange ett tal mellan 1 och 100:" onFocus="this.select()"></asp:Label>           
-            <asp:TextBox ID="TextNr" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextNr" runat="server" onFocus="this.select()"  MaxLength="3"></asp:TextBox>
              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                     ErrorMessage="Ett tal måste anges" CssClass="error" 
                     ControlToValidate="TextNr" SetFocusOnError="True" Text="*" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -31,7 +31,7 @@
                     ErrorMessage="Talet måste ligga mellan 1-100." Text="*" Type="Integer"
                     MaximumValue="100" MinimumValue="1" ControlToValidate="TextNr" SetFocusOnError="True"></asp:RangeValidator>
              <!-- Knapp-->
-            <asp:Button ID="Gissa" runat="server" Text="Skicka gissning" MaxLength="3" OnClick="Gissa_Click"/>
+            <asp:Button ID="Gissa" runat="server" Text="Skicka gissning" OnClick="Gissa_Click"/>
            
             <asp:PlaceHolder ID="PlaceHolder1" runat="server">
              <!-- Gissade tal-->

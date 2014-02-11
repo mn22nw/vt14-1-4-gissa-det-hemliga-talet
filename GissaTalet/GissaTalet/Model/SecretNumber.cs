@@ -5,8 +5,6 @@ using System.Web;
 
 namespace GissaTalet.Model
 {
-    public enum Outcome { Indefinite, Low, High, Correct, NoMoreGuesses, PreviousGuess };
-   [Serializable]
     public class SecretNumber
     {      
         public const int MaxNumberOfGuesses = 7;  //
@@ -18,7 +16,13 @@ namespace GissaTalet.Model
         private List<int> _previousGuesses; // lagrar gissningar som är gjorda sedan slumptalet slumpades fram
 
         public bool CanMakeGuess { get { return LastOutcome != Outcome.Correct && LastOutcome != Outcome.NoMoreGuesses; } } //ger värde om gissning kan göras eller inte
-        public int Count { get { return _count; } } //antalet gjorda gissningar sedan slumptalet slumpades fram
+        public int Count
+        {
+            get
+            {
+                return _previousGuesses.Count;
+            }
+        } //antalet gjorda gissningar sedan slumptalet slumpades fram
 
         public int? Number
         {
@@ -28,7 +32,7 @@ namespace GissaTalet.Model
             }
         }// är null så länge en gissning kan göras
 
-        public Outcome LastOutcome { get{ return _lastOutcome} } // resultat av senaste gissningen
+        public Outcome LastOutcome { get { return _lastOutcome; } } // resultat av senaste gissningen
         public IEnumerable<int> PreviousGuesses { get { return _previousGuesses; } } //
 
         public int secretNumber()
@@ -44,62 +48,69 @@ namespace GissaTalet.Model
             _number = secretNumber();
             _count = 0;
             _previousGuesses.Clear();  //tar bort det som finns
-            LastOutcome = Outcome.Indefinite;
+            _lastOutcome = Outcome.Indefinite;
         }
 
         public Outcome MakeGuess(int number)
         {
 
-            _previousGuesses.Add(number); 
-
             if (number < 1 || number > 100)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("number", "Du måste ange ett värde mellan 1 och 100");
                 }
 
-            if (Count > 7)
-                {
-                    throw new ApplicationException();
-                }
 
-            if (Count == 7) 
+            if (_count >= 7) 
             {
-                return Outcome.NoMoreGuesses;
+                return _lastOutcome = Outcome.NoMoreGuesses;
+            }
+            if (_previousGuesses.Contains(number))
+            {
+                _previousGuesses.Add(number);
+                return _lastOutcome = Outcome.PreviousGuess;
             }
 
-            if (Count < 7)
+            _previousGuesses.Add(number);
+
+            if (_count < 7)
             {
                 _count++;
 
                 if (number == _number)
                 {
-                    _lastOutcome = Outcome.Correct;
-                    return Outcome.Correct;
+                    return _lastOutcome = Outcome.Correct;
                 }
 
                 if (number < _number)
                 {
-                     _lastOutcome = Outcome.Low;
-                     return Outcome.Low;                 
+                    return _lastOutcome = Outcome.High;           
                 }
 
                 if (number > _number)
                 {
-                    _lastOutcome = Outcome.High;
-                    return Outcome.High;
+                    return _lastOutcome = Outcome.Low;
                 }
 
             }
 
-            return Outcome.Indefinite;
+            return _lastOutcome = Outcome.Indefinite;
         }
 
         public SecretNumber()
         {
+            _previousGuesses = new List<int>();
             Initialize();
-            List<int> guessList = new List<int>();
-            guessList = _previousGuesses; 
-            
+           
         }
+
+        public enum Outcome
+        {
+            Indefinite,
+            Low,
+            High,
+            Correct,
+            NoMoreGuesses,
+            PreviousGuess
+        };
     } // end class
 }
