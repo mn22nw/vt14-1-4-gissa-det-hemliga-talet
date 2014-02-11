@@ -11,12 +11,13 @@ namespace GissaTalet
 {
     public partial class Default : System.Web.UI.Page
     {
+       
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (SecretNumber == null)
                 SecretNumber = new SecretNumber();
-
+  
             TextNr.Focus();
         }
 
@@ -35,7 +36,8 @@ namespace GissaTalet
         protected void Reload_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect(Request.RawUrl);
+            SecretNumber.Initialize();
+ 
         }
         protected void Gissa_Click(object sender, EventArgs e)
         {
@@ -51,27 +53,24 @@ namespace GissaTalet
                    var gissatNr = SecretNumber.MakeGuess(Int32.Parse(TextNr.Text));
                    TextNr.Attributes.Add("onfocus", "this.select();");
 
-                   string low = String.Format("{0}", TextNr.Text);
-                   string high = String.Format("{0}", TextNr.Text);
-
                    if (gissatNr == SecretNumber.Outcome.Low) 
                    
                    {
-                       Gissningar.Text += low;
+                       Gissningar.Text = string.Join(", ", SecretNumber.PreviousGuesses);
                        LowT.Visible = true;
                        Low.Visible = true;
                    } 
 
                    if (gissatNr == SecretNumber.Outcome.High)
-                   {   
-                       Gissningar.Text += high;
+                   {
+                       Gissningar.Text = string.Join(", ", SecretNumber.PreviousGuesses);
                        HighT.Visible = true;   
                        High.Visible = true;
                       
                    }
                    if (gissatNr == SecretNumber.Outcome.PreviousGuess)
                    {
-                       Gissningar.Text += String.Format("{0}", TextNr.Text);
+                       Gissningar.Text = string.Join(", ", SecretNumber.PreviousGuesses);
                        PrevT.Visible = true;   
                        Prev.Visible = true;
                       
