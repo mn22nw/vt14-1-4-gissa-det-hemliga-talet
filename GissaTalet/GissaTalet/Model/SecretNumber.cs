@@ -67,6 +67,7 @@ namespace GissaTalet.Model
             if (_previousGuesses.Contains(number))
             {
                 _previousGuesses.Add(number);
+                _count= _count - 1; 
                 return _lastOutcome = Outcome.PreviousGuess;
             }
 
