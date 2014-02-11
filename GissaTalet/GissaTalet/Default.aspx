@@ -36,10 +36,17 @@
             <asp:PlaceHolder ID="PlaceHolder1" runat="server" Visible="false">
              <!-- Gissade tal-->
             <asp:Label ID="Gissningar" runat="server" Text="" Visible="false"></asp:Label>
-                <asp:Image ID="High" runat="server" ImageUrl="~/Content/qm.jpg" Visible="false" />
-            <asp:Label ID="SlutText" runat="server" Text="Du har inga gissningar kvar. Det hemliga talet var " Visible="false"></asp:Label>
-           
-            <asp:Button ID="GuessAgain" runat="server" Text="Slumpa nytt hemligt tal." />
+                <asp:Image ID="High" runat="server" ImageUrl="~/Content/upp.jpg" Visible="false" />
+                <asp:Label ID="HighT" runat="server" Text="För högt" Visible="false"></asp:Label>
+                <asp:Image ID="Low" runat="server" ImageUrl="~/Content/ned.jpg" Visible="false" />
+                <asp:Label ID="LowT" runat="server" Text="För lågt" Visible="false"></asp:Label>
+                <asp:Image ID="Prev" runat="server" ImageUrl="~/Content/already.jpg" Visible="false" />
+                <asp:Label ID="PrevT" runat="server" Text="För lågt" Visible="false"></asp:Label>
+                <asp:Image ID="NoMore" runat="server" ImageUrl="~/Content/nomore.jpg" Visible="false" />
+                <asp:Label ID="SlutText" runat="server" Text="Du har inga gissningar kvar. Det hemliga talet var " Visible="false" CssClass="end"></asp:Label>
+                 <asp:Image ID="Klart" runat="server" ImageUrl="~/Content/klar.jpg" Visible="false" />
+                <asp:Label ID="KlartT" runat="server" Text="" Visible="false" CssClass="end"></asp:Label>
+            <asp:Button ID="GuessAgain" runat="server" Text="Slumpa nytt hemligt tal." Visible="false" />
 
             </asp:PlaceHolder>
         </div>

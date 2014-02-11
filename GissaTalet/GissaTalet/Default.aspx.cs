@@ -49,28 +49,41 @@ namespace GissaTalet
                    if (gissatNr == SecretNumber.Outcome.Low) 
                    
                    {
-                       Gissningar.Text += String.Format("låågt {0}", SecretNumber.LastOutcome);
-                      
+                       Gissningar.Text += String.Format("{0}", SecretNumber.LastOutcome);
+                       LowT.Visible = true;
+                       Low.Visible = true;
+
                    /*    Image myImg = new Image();
                        myImg.ImageUrl = "~/Content/qm.jpg";
                        myImg.Visible = true;
                        Gissningar.Controls.Add(myImg);*/
-                   }
+                   } 
 
                    if (gissatNr == SecretNumber.Outcome.High)
                    {
-                       Gissningar.Text += String.Format("Högt ju vah + {0}", TextNr.Text);
-                      // High.Visible = true;
+                       Gissningar.Text += String.Format("{0}", TextNr.Text);
+                       HighT.Visible = true;   
+                       High.Visible = true;
+                      
                    }
-
+                   if (gissatNr == SecretNumber.Outcome.PreviousGuess)
+                   {
+                       Gissningar.Text += String.Format("{0}", TextNr.Text);
+                       PrevT.Visible = true;   
+                       Prev.Visible = true;
+                      
+                   }
+ 
                    if (gissatNr == SecretNumber.Outcome.Correct)
                    {
-                       Gissningar.Text += String.Format("Grattis!! Du klarade det på {0} försök", SecretNumber.Count);
-
+                       Klart.Visible = true;
+                       KlartT.Visible = true;
+                       KlartT.Text = String.Format("Grattis!! Du klarade det på {0} försök", SecretNumber.Count);    
                    }
 
                    if (gissatNr == SecretNumber.Outcome.NoMoreGuesses)
                    {
+                       NoMore.Visible = true;
                        SlutText.Visible = true;
                        SlutText.Text += String.Format("Du har inga mer gissnigar kvar. Det hemliga talet var {0}", SecretNumber.Number);
 
