@@ -33,10 +33,10 @@
              <!-- Knapp-->
             <asp:Button ID="Gissa" runat="server" Text="Skicka gissning" OnClick="Gissa_Click"/>
            
-            <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+            <asp:PlaceHolder ID="PlaceHolder1" runat="server" Visible="false">
              <!-- Gissade tal-->
-            <asp:Label ID="Tal" runat="server" Text=""></asp:Label>
-            
+            <asp:Label ID="Gissningar" runat="server" Text=""></asp:Label>
+                <asp:Image ID="High" runat="server" ImageUrl="~/Content/qm.jpg" Visible="false" />
             <asp:Label ID="SlutText" runat="server" Text="Du har inga gissningar kvar. Det hemliga talet var "></asp:Label>
            
             <asp:Button ID="GuessAgain" runat="server" Text="Slumpa nytt hemligt tal." />

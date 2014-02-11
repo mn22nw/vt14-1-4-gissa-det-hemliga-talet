@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using GissaTalet.Model;
 
+
 namespace GissaTalet
 {
     public partial class Default : System.Web.UI.Page
@@ -16,10 +17,6 @@ namespace GissaTalet
             if (SecretNumber == null)
                 SecretNumber = new SecretNumber();
 
-            Image myImg = new Image();
-            myImg.ImageUrl = "~/Content/qm.jpg";
-            myImg.Visible = true;
-            Tal.Controls.Add(myImg);
             TextNr.Focus();
         }
 
@@ -42,36 +39,39 @@ namespace GissaTalet
             {
                 try
                 {
-                    SecretNumber.MakeGuess(Int32.Parse(TextNr.Text));
-                    TextNr.Attributes.Add("onfocus", "this.select();");
+
+                    PlaceHolder1.Visible = true;
+                    
+                   var gissatNr = SecretNumber.MakeGuess(Int32.Parse(TextNr.Text));
+                   TextNr.Attributes.Add("onfocus", "this.select();");
                    
+
+                   if (gissatNr == SecretNumber.Outcome.Low) 
+                   
+                   {
+                       Gissningar.Text += String.Format("{0}", gissatNr);
+                      
+                   /*    Image myImg = new Image();
+                       myImg.ImageUrl = "~/Content/qm.jpg";
+                       myImg.Visible = true;
+                       Gissningar.Controls.Add(myImg);*/
+                   }
+
+                   if (gissatNr == SecretNumber.Outcome.High)
+                   {
+                       Gissningar.Text += String.Format("{0}", SecretNumber.LastOutcome);
+                       High.Visible = true;
+                   }
+
+                   if (gissatNr == SecretNumber.Outcome.Correct)
+                   {
+                       Gissningar.Text += String.Format("Grattis!! Du klarade det på {0} försök", SecretNumber.Count);
+
+                   }
+ 
                     //textbox.SelectionStart = 0;
                     //textbox.SelectionLength = textbox.Text.Length;
 
-                    /*  if (PrevCount.HasValue)
-                          {
-                              // ...bestäm skillnaden och...
-                              var diffCount = count - PrevCount.Value;
-
-                              // ...fastställ om det är fler, färre eller lika många.
-                              if (diffCount > 0)
-                              {
-                                  DifferenceLiteral.Text = String.Format(DifferenceLiteral.Text, diffCount, " fler");
-                              }
-                              else if (diffCount < 0)
-                              {
-                                  DifferenceLiteral.Text = String.Format(DifferenceLiteral.Text, -diffCount, " färre");
-                              }
-                              else
-                              {
-                                  DifferenceLiteral.Text = String.Format(DifferenceLiteral.Text, String.Empty, "lika många");
-                              }
-
-                              DifferenceLiteral.Visible = true;
-                          }
-
-                          // Spara aktuellt antal vokaler.
-                          PrevCount = count;*/
                 }
 
                 catch (Exception ex)

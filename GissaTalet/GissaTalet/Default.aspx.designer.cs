@@ -94,13 +94,22 @@ namespace GissaTalet {
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
         
         /// <summary>
-        /// Tal control.
+        /// Gissningar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Tal;
+        protected global::System.Web.UI.WebControls.Label Gissningar;
+        
+        /// <summary>
+        /// High control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image High;
         
         /// <summary>
         /// SlutText control.
